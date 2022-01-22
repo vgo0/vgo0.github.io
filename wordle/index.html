@@ -45,14 +45,13 @@
                 <div class="form-group col-3 mb-2">
                     <input type="date" class="form-control" id="date_picker" min="2021-06-20" value="2021-06-20">
                 </div>
-                <p>Word of the day for <span id="word_date">2021-06-20</span> is: <span class="fw-bold" id="word_picked"></span></p>
+                <p>Word of the day for <span id="word_date">2021-06-20</span> is: <span class="fw-bold" id="word_picked">rebut</span></p>
             </div>
         </div>
     </body>
     <script src="wordle.js"></script>
     <script>
         document.getElementById('word_today').textContent = solve(new Date());
-        document.getElementById('word_picked').textContent = solve(new Date(2021, 5, 20));
         var next_days = document.getElementById('next_days');
         for(var i = 1; i < 7; i++) {
             const p_o = document.createElement('p');
@@ -68,7 +67,12 @@
         }
         document.getElementById('date_picker').addEventListener('change', function() {
             document.getElementById('word_date').textContent = this.value;
-            document.getElementById('word_picked').textContent = solve(new Date(this.value));
+            var date = new Date(this.value);
+            var offset = date.getTimezoneOffset();
+            if(offset > 0) {
+                date.setDate(date.getDate() + 1)
+            }
+            document.getElementById('word_picked').textContent = solve(date);
         });
     </script>
 </html>
