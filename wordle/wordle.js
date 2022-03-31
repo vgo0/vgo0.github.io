@@ -3,7 +3,7 @@
 function $a(e, a) {
     var s = new Date(e),
     t = new Date(a).setHours(0, 0, 0, 0) - s.setHours(0, 0, 0, 0);
-    return Math.floor(t / 86400000)
+    return Math.floor(t / 864e5)
 }
 function Na(e) {
     var Ra = new Date(2021, 5, 19, 0, 0, 0, 0);
